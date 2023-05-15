@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,7 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/login', function(){
+Route::get('/log', function(){
     return view('login');
 });
 
@@ -26,3 +27,7 @@ Route::get('/register', function(){
     return view('register');
 });
 Route::post('/register', [UserController::class, 'create'])->name('register.create');
+
+Route::group( ['middleware' => 'auth' ], function(){
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+});
