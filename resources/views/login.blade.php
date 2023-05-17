@@ -1,7 +1,6 @@
+<x-app-layout>
 <form action="{{route('login')}}" method="post">
     @csrf
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
     <body class="body d-flex justify-content-center align-items-center vh-100" id="fondo">
         <div class="p-5 rounded-5 text-secondary shadow" style="width: 25rem" id="caja-Login">
             <div class="d-flex justify-content-center">
@@ -36,24 +35,4 @@
     </div>
 </body>
 
-<footer class="footer">
-    <div class="container">
-        <h4>Dev's:</h4>
-        <ul id="nombres">
-            <li>Altamirano Niggel.</li>
-            <li>Cota Isael.</li>
-            <li>Juarez Xavier.</li>
-            <li>Sanchez Daniel</li>
-        </ul>
-
-        <h4>Universidad: </h4>
-        <ul>
-            <li>Universidad Autonoma de Baja California Sur</li>
-        </ul>
-
-        <h4>Carrera: </h4>
-        <ul>
-            <li>Ingenieria en Desarrollo de Software</li>
-        </ul>
-    </div>
-</footer>
+</x-app-layout>

@@ -9,4 +9,8 @@ class ProjectController extends Controller
     public function index(){
         return view('projects');
     }
+
+    public function show(){
+        return view('canvas');
+    }
 }

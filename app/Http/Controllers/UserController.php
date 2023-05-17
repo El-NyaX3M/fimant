@@ -16,7 +16,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->password),
             ]);
             $user->save();
-            return view('landing');
+            return view('login');
         }
         else return view('register');
     }
