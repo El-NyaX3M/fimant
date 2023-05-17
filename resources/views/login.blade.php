@@ -9,13 +9,14 @@
                 <!--Imagen Original-->
                 <!--<img src="\img\login-icon.svg" alt="login-icon" style="height: 7rem"/>-->
             </div>
-            <div class="text-center fs-1 fw-bold text-light">Inicio de Sesion</div>
+            <div class="text-center fs-3 fw-bold text-light">Inicio de Sesion</div>
             <div class="input-group mt-4">
-              <div class="input-group-text bg-success"><img src="\img\username-icon.svg" alt="username-icon" style="height: 1rem" />
+              <div class="input-group-text bg-success"><img src="https://freesvg.org/img/Minduka-mail.png" alt="username-icon" style="height: 1rem" />
               </div>
               <!--E-mail-->
               <input class="form-control bg-light" placeholder="E-Mail (example@outlook.com)" input type="email" name="email" id="email"/>
             </div>
+            <br>
             <div class="input-group mt-1">
               <div class="input-group-text bg-success">
                 <img src="\img\password-icon.svg" alt="password-icon" style="height: 1rem"/>
