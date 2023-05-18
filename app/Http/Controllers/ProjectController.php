@@ -10,7 +10,7 @@ class ProjectController extends Controller
         return view('projects');
     }
 
-    public function show(){
+    public function create(){
         return view('canvas');
     }
 }
