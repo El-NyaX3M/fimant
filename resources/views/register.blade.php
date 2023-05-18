@@ -8,7 +8,10 @@
   
   <body  class="d-flex flex-column" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4eYu5hgqQ-gIpEP6DqRBWdpAlSm5vE2V0E1icTtQPnyyYoN24wFnj4bjXxWlRdQH5ZHw&usqp=CAU'); ">
       <div class="row justify-content-center mt-5 mb-5" >
+        
           <div class="p-4 rounded-5 text-secondary shadow bg-black" style="width: 25rem; --bs-bg-opacity: .9;" id="caja-registro">
+            <form action="{{route('register.create')}}" method="post">
+              @csrf
               <div class="d-flex justify-content-center">
                   <img src="\img\img-noIcons\logo_uabcs.png" alt="login-icon" style="height: 7rem"/>
                   <!--Imagen Original-->
