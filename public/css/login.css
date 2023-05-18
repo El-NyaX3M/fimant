@@ -91,3 +91,36 @@
     background-color: white;
     color: black;
 }
+
+.canvas-container{
+  border: 1px solid black;
+  min-height: 100vh;
+}
+
+.canvas-hr{
+  color: white;
+}
+
+.canvas-options-container{
+  border: 1px solid ghostwhite;
+  padding: 1vw;
+}
+
+.canvas-options{
+  display: inline-flex;
+  color: white;
+}
+
+.canvas-options:hover{
+  border: 1px solid white;
+}
+
+.canvas-inputs{
+  color: white;
+  width: 100%;
+}
+
+#radioBtn .notActive{
+  color: white;
+  background-color: #212529;
+}
