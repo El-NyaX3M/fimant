@@ -13,4 +13,12 @@ class ProjectController extends Controller
     public function create(){
         return view('canvas');
     }
+
+    public function load(){
+        return view('canvas');
+    }
+
+    public function save(){
+        return view('projects');
+    }
 }
