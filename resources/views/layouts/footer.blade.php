@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="container-fluid bg-black text-white mt-auto mb-0">
+<div class="row  mb-0">
+    <div class="container-fluid bg-black text-white">
         <div class="container">
             <footer class=" bd-footer row row-cols-5 py-5 my-5 border-top">
               <div class="col">
