@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
           <!-- Sidebar -->
-          <div class="col-md-3 sidebar text-center min-vh-100" style="background-color: rgba(0,0,0,.9);">
+          <div class="col-md-2 sidebar text-center min-vh-100" style="background-color: rgba(0,0,0,.9);">
             <h1 style="color:white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Proyectos</h1>
             <br>
             <br>
@@ -35,8 +35,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <p class="mb-sm-0" style="font-size: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Archivos</p>
+                                <p class="mb-sm-0" style="font-size: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;-webkit-text-stroke: 1px WHITE;">Archivos</p>
 
+                                <div class="col-2 page-title-right">
+                                    <a href="{{route('projects.create')}}"><button class="btn btn-primary">Crear Proyecto</button></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -46,57 +49,57 @@
                 <!-- container-fluid -->
                 <!--Cartas de proyectos-->
                 <div class="row p-2">
-                      <div class="card col-2 text-center m-2">
+                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
                       <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
                       <div class="card-body">
                           <h4 class="card-title mb-2">Proyecto A</h4>
-                          <div class="text-end">
-                              <a href="javascript:void(0);" class="btn btn-primary">Abrir</a>
+                          <div class="text-end text-center">
+                              <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
                           </div>
                       </div>
                     </div>
-                      <div class="card col-2 text-center m-2">
+                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
                         <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
                         <div class="card-body">
                             <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end">
-                                <a href="javascript:void(0);" class="btn btn-primary">Abrir</a>
+                            <div class="text-end text-center">
+                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
                             </div>
                         </div>
                     </div>
-                      <div class="card col-2 text-center m-2">
+                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
                         <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
                         <div class="card-body">
                             <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end">
-                                <a href="javascript:void(0);" class="btn btn-primary">Abrir</a>
+                            <div class="text-end text-center">
+                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
                             </div>
                         </div>
                     </div>
-                      <div class="card col-2 text-center m-2">
+                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
                         <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
                         <div class="card-body">
                             <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end">
-                                <a href="javascript:void(0);" class="btn btn-primary">Abrir</a>
+                            <div class="text-end text-center">
+                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
                             </div>
                         </div>
                     </div>
-                      <div class="card col-2 text-center m-2">
+                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
                         <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
                         <div class="card-body">
                             <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end">
-                                <a href="javascript:void(0);" class="btn btn-primary">Abrir</a>
+                            <div class="text-end text-center">
+                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
                             </div>
                         </div>
                     </div>
-                      <div class="card col-2 text-center m-2">
+                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
                         <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
                         <div class="card-body">
                             <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end">
-                                <a href="javascript:void(0);" class="btn btn-primary">Abrir</a>
+                            <div class="text-end text-center">
+                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
                             </div>
                         </div>
                     </div>
@@ -111,9 +114,6 @@
         </div>
       </div>
 </body>
-    
-
-<a href="{{route('projects.create')}}"><button>Crear Proyecto</button></a>
 
 
 </x-app-layout>
