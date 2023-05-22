@@ -124,3 +124,7 @@
   color: white;
   background-color: #212529;
 }
+
+#contenedor{
+  padding: 0;
+}
