@@ -14,9 +14,9 @@ class Figura{
             red: 0,
             green: 0,
             blue: 0,
-            weight: 3
+            weight: 8
         }
-        this.select = true;
+        this.select = false;
         this.border = true;
         this.bg = true;
         this.figura = figura;
@@ -40,15 +40,20 @@ class Figura{
                 break;
         }
         
-        /*if(this.selec){
+        if(this.select){
+            strokeWeight(1);
+            noFill();
             stroke(255, 25, 25);
-            rect(this.x - 5, this.y - 5, this. w + 5, this.h + 5);
+            rect(this.x - 15, this.y - 15, this. w + this.lineColor.weight + 15, this.h + this.lineColor.weight + 15);
         }
-        */
+        
     }
 
     selected(){
         this.select = true;
+    }
+    diselect(){
+        this.select = false;
     }
     move(){
         this.x = mouseX;

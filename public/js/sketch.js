@@ -5,6 +5,7 @@ function setup(){
     canvas.mouseClicked(agregarFigura);
     pila = new Pila();
     figura = 'cursor';
+    shapeModif = 'none';
 }
 
 function draw(){
@@ -18,9 +19,33 @@ function agregarFigura(){
         console.log(mouseX+", "+mouseY);
         console.log(pila);
     }
+    else{
+        selectFigura();
+    }
     console.log('click')
 }
 
+function selectFigura(){
+    for(let objeto of pila.getItems()){
+        if(mouseX >= objeto.x && mouseX <= objeto.x + objeto.w && mouseY >= objeto.y && mouseY <= objeto.y + objeto.h){
+            objeto.diselect();
+        }
+        else{
+            objeto.diselect();
+            shapeModif = 'none';
+        }
+    }
+    for(let objeto of pila.getItems()){
+        if(mouseX >= objeto.x && mouseX <= objeto.x + objeto.w && mouseY >= objeto.y && mouseY <= objeto.y + objeto.h){
+            objeto.selected();
+            shapeModif = objeto;
+            console.log(objeto);
+            break;
+        }
+        console.log(objeto);
+    }
+    
+}
 function keyTyped(){
     
     switch(key){
@@ -31,6 +56,7 @@ function keyTyped(){
         
         case 'z':
             figura = 'cursor';
+
     }
     console.log(figura);
     return false;

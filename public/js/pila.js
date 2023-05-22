@@ -16,7 +16,9 @@ class Pila {
     size(){
         return this.pila.length;
     }
-    
+    getItems(){
+        return this.pila;
+    }
     draw(){
         for(let figura of this.pila){
             figura.draw();
