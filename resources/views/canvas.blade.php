@@ -1,4 +1,10 @@
 <x-app-layout>
+    <style>
+        
+        canvas{
+            display:block;
+        }
+    </style>
 <div class="row">
     <div class="container-fluid bg-dark col-12">
         <div class="col-6" id="radioBtn"> 
@@ -92,18 +98,9 @@
         $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
         $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
     })
-
-    function setup() {
-        let myCanvas = createCanvas(1200, 900);
-        myCanvas.parent('contenedor');     
-    }
-
-    function draw() {
-        background(220);
-    }
-        
-    
-            
 </script>
+<script src="{{asset('js/sketch.js')}}"></script>
+<script src="{{asset('js/pila.js')}}"></script>
+<script src="{{asset('js/figura.js')}}"></script>
 
 </x-app-layout>

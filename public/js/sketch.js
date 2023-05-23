@@ -3,6 +3,7 @@
 function setup(){
     canvas = createCanvas(windowWidth, windowHeight);
     canvas.mouseClicked(agregarFigura);
+    canvas.parent('contenedor');
     pila = new Pila();
     figura = 'cursor';
     shapeModif = 'none';
