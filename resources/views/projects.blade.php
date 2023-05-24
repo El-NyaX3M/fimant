@@ -49,60 +49,19 @@
                 <!-- container-fluid -->
                 <!--Cartas de proyectos-->
                 <div class="row p-2">
-                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
+                    @foreach ($projects as $project)
+                        <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
                       <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
-                      <div class="card-body">
-                          <h4 class="card-title mb-2">Proyecto A</h4>
-                          <div class="text-end text-center">
-                              <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
-                          </div>
+                        <div class="card-body">
+                            <h4 class="card-title mb-2">{{$project->name}}</h4>
+                            <div class="text-end text-center">
+                                  <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
+                            </div>
+                        </div>
                       </div>
-                    </div>
-                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
-                        <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
-                        <div class="card-body">
-                            <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end text-center">
-                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
-                            </div>
-                        </div>
-                    </div>
-                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
-                        <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
-                        <div class="card-body">
-                            <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end text-center">
-                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
-                            </div>
-                        </div>
-                    </div>
-                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
-                        <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
-                        <div class="card-body">
-                            <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end text-center">
-                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
-                            </div>
-                        </div>
-                    </div>
-                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
-                        <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
-                        <div class="card-body">
-                            <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end text-center">
-                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
-                            </div>
-                        </div>
-                    </div>
-                      <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
-                        <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
-                        <div class="card-body">
-                            <h4 class="card-title mb-2">Proyecto A</h4>
-                            <div class="text-end text-center">
-                                <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                      
+                      
                     
                 </div>
                 <!--Fin de cartas de proyectos-->
