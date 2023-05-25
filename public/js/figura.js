@@ -2,8 +2,18 @@ class Figura{
     constructor(x, y, figura){
         this.w = 50;
         this.h = 50;
-        this.x = x - this.w/2;
-        this.y = y - this.h/2;
+        switch (figura){
+            case 'rectángulo':
+                this.x = x - this.w/2;
+                this.y = y - this.h/2;
+                break;
+            case 'círculo':
+                this.x = x - this.w/2;
+                this.y = y - this.h/2;
+                this.x1 = x;
+                this.y1 = y;
+        }
+        
         this.bgColor = {
             red: 255,
             green: 100,
@@ -38,6 +48,8 @@ class Figura{
                 rect(this.x, this.y, this.w, this.h);
                 //console.log('hola wapo');
                 break;
+            case 'círculo':
+                ellipse(this.x1, this.y1, this.w, this.h);
         }
         
         if(this.select){

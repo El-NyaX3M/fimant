@@ -70,6 +70,8 @@
 
             <!--Modales-->
               <!-- Modal 1 -->
+              <form action="{{route('projects.create')}}" method="post">
+                @csrf
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -79,18 +81,20 @@
                     </div>
                     <div class="modal-body">
                       <!--Cuerpo del Modal-->
+                      
                       <h5>Nombre del proyecto:</h5>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Nombre del Proyecto..." aria-label="Nombre del Proyecto...">
+                        <input type="text" class="form-control" placeholder="Nombre del Proyecto..." aria-label="Nombre del Proyecto..." name="projectName">
                       </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                      <a href="{{route('projects.create')}}"><button type="button" class="btn btn-success">Crear Proyecto</button></a>
+                      <button type="submit" class="btn btn-success" type="submit">Crear Proyecto</button>
                     </div>
                   </div>
                 </div>
               </div>
+            </form>
 
               <!-- Modal 2 -->
               <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="modalDetalleLabel" aria-hidden="true">

@@ -15,9 +15,9 @@ class ProjectController extends Controller
         return view('projects', compact('projectsCount', 'projects'));
     }
 
-    public function create(){
+    public function create(Request $request){
         Project::create([
-            'name' => 'PROYECTO',
+            'name' => $request->projectName,
             'id_user' => Auth::user()->id,
             'shapes' => json_encode(''),
         ]);

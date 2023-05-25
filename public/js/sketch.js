@@ -54,10 +54,12 @@ function keyTyped(){
             figura = 'rectángulo';
             
             break;
-        
+        case 'c':
+            figura = 'círculo';
+            break;
         case 'z':
             figura = 'cursor';
-
+            break;
     }
     console.log(figura);
     return false;
