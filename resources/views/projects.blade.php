@@ -11,7 +11,7 @@
             <br>
             <br>
             <div class="mt-2">
-                <button class="btn btn-success text-white w-45 mt-4 fw-semibold shadow-sm">Detalles</button>
+                <button class="btn btn-success text-white w-45 mt-4 fw-semibold shadow-sm"data-bs-toggle="modal" data-bs-target="#modalDetalle">Detalles</button>
             </div>
             <div class="mt-3">
                 <form action="{{route('logout')}}" method="post">
@@ -38,7 +38,7 @@
                                 <p class="mb-sm-0" style="font-size: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;-webkit-text-stroke: 1px WHITE;">Archivos</p>
 
                                 <div class="col-2 page-title-right">
-                                    <a href="{{route('projects.create')}}"><button class="btn btn-primary">Crear Proyecto</button></a>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear Proyecto</button>
                                 </div>
                             </div>
                         </div>
@@ -50,10 +50,10 @@
                 <!--Cartas de proyectos-->
                 <div class="row p-2">
                     @foreach ($projects as $project)
-                        <div class="card col-2 text-center m-2" style="background-color: rgb(155,155,155);">
+                        <div class="card col-2 text-center m-2" style="background-color: rgba(49,50,57,255);">
                       <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="img_prueba.png" alt="Card image cap" style="width: 150px;height: 150px;">
                         <div class="card-body">
-                            <h4 class="card-title mb-2">{{$project->name}}</h4>
+                            <h4 class="card-title mb-2" id="nProyectos">{{$project->name}}</h4>
                             <div class="text-end text-center">
                                   <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
                             </div>
@@ -67,6 +67,48 @@
                 <!--Fin de cartas de proyectos-->
                 
             </div>
+
+            <!--Modales-->
+              <!-- Modal 1 -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmacion</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <!--Cuerpo del Modal-->
+                      <h5>Nombre del proyecto:</h5>
+                      <div class="col">
+                        <input type="text" class="form-control" placeholder="Nombre del Proyecto..." aria-label="Nombre del Proyecto...">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                      <a href="{{route('projects.create')}}"><button type="button" class="btn btn-success">Crear Proyecto</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal 2 -->
+              <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="modalDetalleLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="modalDetalleLabel">Detalles de Usuario</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <!--Cuerpo del Modal-->
+                      <h6>Nombre de Usuario: {{Auth::user()->name}}.</h6>
+                      <h6>E-mail del usuario: {{Auth::user()->email}}.</h6>
+                      <h6>Numero de proyectos realizados: {{$projectsCount}}.</h6> 
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
             
           </div>
