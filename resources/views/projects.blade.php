@@ -55,7 +55,7 @@
                         <div class="card-body">
                             <h4 class="card-title mb-2" id="nProyectos">{{$project->name}}</h4>
                             <div class="text-end text-center">
-                                  <a href="javascript:void(0);" class="btn btn-success">Abrir</a>
+                                  <a href="{{url('/canvas')}}" class="btn btn-success">Abrir</a>
                             </div>
                         </div>
                       </div>

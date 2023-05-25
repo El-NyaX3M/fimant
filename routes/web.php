@@ -31,6 +31,7 @@ Route::post('/register', [UserController::class, 'create'])->name('register.crea
 Route::group( ['middleware' => 'auth' ], function(){
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
     Route::get('/canvas/{id}', [ProjectController::class, 'load'])->name('projects.load');
+    Route::get('/canvas', [ProjectController::class, 'load']);
     Route::post('/canvas',[ProjectController::class, 'create'])->name('projects.create');
     Route::get('/prueba', function(){
         return view('canvasWork');
