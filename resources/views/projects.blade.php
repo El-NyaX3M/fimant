@@ -4,7 +4,7 @@
         <div class="row">
           <!-- Sidebar -->
           <div class="col-md-2 sidebar text-center min-vh-100" style="background-color: rgba(0,0,0,.9);">
-            <h1 style="color:white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Proyectos</h1>
+            <h1 class="mt-4" style="color:white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Proyectos</h1>
             <br>
             <br>
             <p style="color:white;font-size:25px;">{{Auth::user()->name}}</p>
@@ -33,12 +33,12 @@
 
                     <!-- start page title -->
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-11 header mt-2 rounded">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <p class="mb-sm-0" style="font-size: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;-webkit-text-stroke: 1px WHITE;">Archivos</p>
+                                <p class="mb-sm-0" style="font-size: 50px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color:white;">Archivos</p>
 
-                                <div class="col-2 page-title-right">
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear Proyecto</button>
+                                <div class="col-2 page-title-right ">
+                                    <button class="btn btn-success ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Crear Proyecto</button>
                                 </div>
                             </div>
                         </div>
