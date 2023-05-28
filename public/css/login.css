@@ -154,3 +154,23 @@
 #nProyectos{
   color: white;
 }
+
+#fechaP{
+  color: rgb(138, 138, 138);
+}
+#backcss{
+  position: relative;
+  right: -875px;
+}
+
+#savecss{
+  position: relative;
+  right: -890px;
+}
+#titulo{
+  color: white;
+  font-size: 25px;
+  font: italic;
+  position: relative;
+  right: -365px;
+}
