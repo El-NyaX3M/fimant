@@ -1,7 +1,9 @@
 
 
-function setup(){
-    canvas = createCanvas(windowWidth, windowHeight);
+function setup() {
+    var canvasDiv = document.getElementById('contenedor');
+    var width = canvasDiv.offsetWidth;
+    canvas = createCanvas(width, windowHeight);
     canvas.mouseClicked(agregarFigura);
     canvas.parent('contenedor');
     pila = new Pila();
