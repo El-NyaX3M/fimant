@@ -13,13 +13,14 @@ function setup() {
 
 function draw(){
     background(255);
-    
+    previsual();
     pila.draw();
 }
 
 function agregarFigura(){
     if(figura != 'cursor'){
         pila.push(new Figura(mouseX, mouseY, figura))
+        //figura = 'cursor';
         console.log(mouseX+", "+mouseY);
         console.log(pila);
     }
@@ -49,6 +50,19 @@ function selectFigura(){
         console.log(objeto);
     }
     
+}
+
+function previsual(){
+    stroke(1);
+    fill('rgba(200, 200, 200, 0.2)');
+    switch(figura){
+        case 'rectángulo':
+            rect(mouseX-25, mouseY-25, 50, 50);
+            break;
+        case 'círculo':
+            ellipse(mouseX, mouseY, 50, 50);
+            break;
+    }
 }
 function keyTyped(){
     

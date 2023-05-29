@@ -15,16 +15,16 @@ class Figura{
         }
         
         this.bgColor = {
-            red: 255,
-            green: 100,
-            blue: 100, 
-            alpha: 0.5
+            red: 200,
+            green: 200,
+            blue: 200, 
+            alpha: 0.8
         }
         this.lineColor = {
             red: 0,
             green: 0,
             blue: 0,
-            weight: 8
+            weight: 1
         }
         this.select = false;
         this.border = true;
