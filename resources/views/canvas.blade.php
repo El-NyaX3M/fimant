@@ -8,11 +8,11 @@
 <div class="row">
     <div class="container-fluid bg-dark col-12">
         <div class="col-6" id="radioBtn"> 
-            <a class="btn btn-outline-light btn-lg active" data-toggle="fun" data-title="cursor"><i class="fa-solid fa-arrow-pointer fa-lg"></i></a>
-            <a class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="cuadrado"><i class="fa-regular fa-square fa-lg"></i></a>
-            <a class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="circulo" id="drawEllipse"><i class="fa-regular fa-circle fa-lg"></i></a>
-            <a class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="linea"><i class="fa-solid fa-slash fa-lg"></i></a>
-            <a class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="texto"><i class="fa-solid fa-font fa-lg"></i></a>
+            <a class="btn btn-outline-light btn-lg active" data-toggle="fun" data-title="cursor" onclick="setFigura('cursor')"><i class="fa-solid fa-arrow-pointer fa-lg"></i></a>
+            <a class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="cuadrado" onclick="setFigura('rectángulo')"><i class="fa-regular fa-square fa-lg"></i></a>
+            <a class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="circulo" id="drawEllipse" onclick="setFigura('círculo')"><i class="fa-regular fa-circle fa-lg"></i></a>
+            <a class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="linea" onclick="setFigura('línea')"><i class="fa-solid fa-slash fa-lg"></i></a>
+            <a class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="texto" onclick="setFigura('texto')"><i class="fa-solid fa-font fa-lg"></i></a>
             {{-- <button class="btn btn-outline-light btn-lg"><i class="fa-solid fa-arrow-pointer fa-lg"></i></button>
             <button class="btn btn-outline-light btn-lg"><i class="fa-regular fa-square fa-lg"></i></button>
             <button class="btn btn-outline-light btn-lg"><i class="fa-regular fa-circle fa-lg"></i></button>
@@ -90,9 +90,10 @@
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
-
+<script src="{{asset('js/sketch.js')}}"></script>
+<script src="{{asset('js/pila.js')}}"></script>
+<script src="{{asset('js/figura.js')}}"></script>
 <script>
-    
     $('#radioBtn a').on('click', function(){
         var sel = $(this).data('title');
         var tog = $(this).data('toggle');
@@ -102,8 +103,6 @@
         $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
     })
 </script>
-<script src="{{asset('js/sketch.js')}}"></script>
-<script src="{{asset('js/pila.js')}}"></script>
-<script src="{{asset('js/figura.js')}}"></script>
+
 
 </x-app-layout>

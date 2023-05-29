@@ -13,6 +13,7 @@ function setup() {
 
 function draw(){
     background(255);
+    
     pila.draw();
 }
 
@@ -65,4 +66,7 @@ function keyTyped(){
     }
     console.log(figura);
     return false;
+}
+function setFigura(shape){
+    figura = shape;
 }
