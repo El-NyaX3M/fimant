@@ -23,6 +23,16 @@ function agregarFigura(){
         //figura = 'cursor';
         console.log(mouseX+", "+mouseY);
         console.log(pila);
+        const productosContainer = document.getElementById('figuras-container');
+        productosContainer.innerHTML = '';
+        const data = pila.getItems();
+        data.forEach(figura => {
+            const figuraElement = document.createElement('div');
+            figuraElement.innerHTML = `
+              <p class="text-white ms-2 mt-0">${figura.figura}</p>
+            `;
+            productosContainer.appendChild(figuraElement);
+          });
     }
     else{
         selectFigura();

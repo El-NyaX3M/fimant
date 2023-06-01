@@ -26,6 +26,7 @@
     <div class="col-2 bg-dark canvas-container">
         <p class="text-white ms-2 mt-2">Capas</p>
         <hr class="canvas-hr ms-1">
+        <div id="figuras-container"></div>
     </div>
 
     <div class="col-8 bg-light canvas-container" id="contenedor"></div>
