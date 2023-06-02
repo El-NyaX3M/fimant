@@ -11,7 +11,7 @@
           <div class="row justify-content-center mt-5 mb-5" >
           <div class="p-5 rounded-5 text-secondary shadow bg-black" style="width: 25rem; --bs-bg-opacity: .9;" id="caja-Login">
               <div class="d-flex justify-content-center">
-                  <img src="\img\img-noIcons\logo_uabcs.png" alt="login-icon" style="height: 7rem"/>
+                  <img src="\img\Figman´t.svg" alt="login-icon" style="height: 7rem"/>
                   <!--Imagen Original-->
                   <!--<img src="\img\login-icon.svg" alt="login-icon" style="height: 7rem"/>-->
               </div>
