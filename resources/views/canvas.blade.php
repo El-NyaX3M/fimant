@@ -118,35 +118,24 @@
                 if(this.tipoFigura != 'cursor'){
                     this.figuras.push(new Figura(mouseX, mouseY, this.tipoFigura))
                 }
-                /* else{
-                    selectFigura();
-                } */
             },
             setFigura(shape){
                 this.tipoFigura = shape;
                 console.log(this.tipoFigura);
             },
-            selectFigura(){
-                for(let objeto of this.figuras){
-                    if(mouseX >= objeto.x && mouseX <= objeto.x + objeto.w && mouseY >= objeto.y && mouseY <= objeto.y + objeto.h){
-                        objeto.diselect();
+            previsual(sketch){
+                sketch.stroke(1);
+                sketch.fill('rgba(200, 200, 200, 0.2)');
+                    switch(this.tipoFigura){
+                        case 'rectángulo':
+                        sketch.rect(sketch.mouseX-25, sketch.mouseY-25, 50, 50);
+                            break;
+                        case 'círculo':
+                        sketch.ellipse(sketch.mouseX, sketch.mouseY, 50, 50);
+                            break;
                     }
-                    else{
-                        objeto.diselect();
-                        shapeModif = 'none';
-                    }
-                }
-                for(let objeto of this.figuras){
-                    if(mouseX >= objeto.x && mouseX <= objeto.x + objeto.w && mouseY >= objeto.y && mouseY <= objeto.y + objeto.h){
-                        objeto.selected();
-                        shapeModif = objeto;
-                        console.log(objeto);
-                        break;
-                    }
-                    console.log(objeto);
-                }
-            
             }
+            
         },
         mounted() {
 
@@ -160,6 +149,7 @@
                 
                 sketch.draw = () => {
                     sketch.background(255);
+                    this.previsual(sketch);
                     for (let i = this.figuras.length - 1; i >= 0; i--) {
                             this.figuras[i].draw(sketch);
                         }
@@ -169,7 +159,29 @@
                     if(sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height){
                         this.agregarFigura();
                     }
-                    
+                    if(this.tipoFigura==="cursor"){
+                        sketch.selectFigura();
+                    }   
+                }
+
+                sketch.selectFigura = () => {
+                        for(let objeto of this.figuras){
+                            if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.x + objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y + objeto.h){
+                                objeto.diselect();
+                            }
+                            else{
+                                objeto.diselect();
+                                shapeModif = 'none';
+                            }
+                        }
+                        for(let objeto of this.figuras){
+                            if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.x + objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y + objeto.h){
+                                objeto.selected();
+                                shapeModif = objeto;
+                                console.log(objeto);
+                                break;
+                            }
+                        }
                 }
             };
             let myp5 = new p5(s, 'contenedorCanvas');
