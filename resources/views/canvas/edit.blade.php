@@ -38,8 +38,8 @@
             <button type="button" class="btn btn-outline-light btn-block w-50 text-start" @click="seleccionarFigura(index)" :id="'capa'+index">
                 @{{figura.figura}}
             </button>
-            <button type="button" class="btn btn-outline-light btn-block ms-2 text-start" @click="setHidden(index)"><i class="fa-solid fa-eye fa-xs"></i></button>
-            <button type="button" class="btn btn-outline-light btn-block ms-2 text-start"><i class="fa-solid fa-trash fa-xs"></i></button>
+            <button type="button" class="btn btn-outline-light btn-block ms-2 text-start" @click="setHidden(index)"><i class=" fa-regular fa-eye-slash fa-xs" v-if="figuras[index].hidden"></i> <i class="fa-solid fa-eye fa-xs" v-else></i> </button>
+            <button type="button" class="btn btn-outline-light btn-block ms-2 text-start" @click="eliminarFigura(index)"><i class="fa-solid fa-trash fa-xs"></i></button>
         </div>
         
     </div>
@@ -213,7 +213,15 @@
                 document.getElementById('formGuardar').submit();
             },
             setHidden(index){
-                this.figuras[index].hide();
+                if (this.figuras[index].hidden) {
+                    this.figuras[index].hidden=false;
+                }else{
+                    this.figuras[index].hidden=true;
+                }
+                
+            },
+            eliminarFigura(index){
+                this.figuras.splice(index,1);
             }
             
         },
@@ -242,7 +250,9 @@
                     sketch.background(255);
                     this.previsual(sketch);
                     for (let i = this.figuras.length - 1; i >= 0; i--) {
-                            this.figuras[i].draw(sketch);
+                            if (!this.figuras[i].hidden) {
+                                this.figuras[i].draw(sketch);
+                            }    
                         }
                 };
 
