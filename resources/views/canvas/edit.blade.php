@@ -20,22 +20,26 @@
             <button class="btn btn-outline-light btn-lg"><i class="fa-solid fa-font fa-lg"></i></button> --}}
             <a id="titulo">{{$project->name}}</a> <!--Devolver nombre de proyecto-->
             <a href="{{url('/projects')}}" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="regresar" id="backcss"><i class="fa-sharp fa-solid fa-arrow-left"></i></a>
+            <button type="button" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="guardar" id="savecss" @click="guardar()"><i class="fa-solid fa-floppy-disk"> Guardar</i></button> 
+            {{-- FORM PARA GUARDAR EL PROYECTO --}}
             <form action="{{route('projects.save',$project->id)}}" method="post" id="formGuardar">
                 @csrf
                 @method('put')
-                <button type="button" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="guardar" id="savecss" @click="guardar()"><i class="fa-solid fa-floppy-disk"> Guardar</i></button>
                 <input type="hidden" name="id" value="{{$project->id}}">
-                <input type="hidden" name="shapes" value="" id="shapes">      
+                <input type="hidden" name="shapes" value="" id="shapes">     
             </form>
+            
         </div>
     </div>
     <div class="col-2 bg-dark canvas-container-capas">
         <p class="text-white ms-2 mt-2">Capas</p>
         <hr class="canvas-hr ms-1">
-        <div v-for="(figura,index) in figuras" class="d-grid gap-2 mt-1">
-            <button type="button" class="btn btn-outline-light btn-block text-start" @click="seleccionarFigura(index)" :id="'capa'+index">
+        <div v-for="(figura,index) in figuras" class="mt-3">
+            <button type="button" class="btn btn-outline-light btn-block w-50 text-start" @click="seleccionarFigura(index)" :id="'capa'+index">
                 @{{figura.figura}}
             </button>
+            <button type="button" class="btn btn-outline-light btn-block ms-2 text-start" @click="setHidden(index)"><i class="fa-solid fa-eye fa-xs"></i></button>
+            <button type="button" class="btn btn-outline-light btn-block ms-2 text-start"><i class="fa-solid fa-trash fa-xs"></i></button>
         </div>
         
     </div>
@@ -207,6 +211,9 @@
                 document.getElementById('shapes').value = JSON.stringify(this.figuras);
                 console.log(document.getElementById('shapes').value);
                 document.getElementById('formGuardar').submit();
+            },
+            setHidden(index){
+                this.figuras[index].hide();
             }
             
         },

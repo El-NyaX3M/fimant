@@ -30,7 +30,7 @@ class Figura{
         this.border = true;
         this.bg = true;
         this.figura = figura;
-        
+        this.hidden = false;
     }
 
     draw(stroke){

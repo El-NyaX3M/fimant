@@ -19,7 +19,7 @@ class ProjectController extends Controller
         $project = Project::create([
             'name' => $request->projectName,
             'id_user' => Auth::user()->id,
-            'shapes' => json_encode(''),
+            'shapes' => null,
         ]);
         $project->save();
         return redirect()->back()->with('success', 'ok');
