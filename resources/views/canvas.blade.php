@@ -26,10 +26,10 @@
     <div class="col-2 bg-dark canvas-container-capas">
         <p class="text-white ms-2 mt-2">Capas</p>
         <hr class="canvas-hr ms-1">
-        <div v-for="(figura,index) in figuras">
-            <h3 class="text-white">
+        <div v-for="(figura,index) in figuras" class="d-grid gap-2 mt-1">
+            <button type="button" class="btn btn-outline-light btn-block text-start" @click="seleccionarFigura(index)" :id="'capa'+index">
                 @{{figura.figura}}
-            </h3>
+            </button>
             
         </div>
         
@@ -45,12 +45,12 @@
             <div class="row">
                 <div class="col-6">
                     <div class="canvas-options rounded">
-                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="X">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="X" id="xFigura">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="canvas-options rounded">
-                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Y">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Y" id="yFigura">
                     </div>
                 </div>
             </div>
@@ -58,12 +58,25 @@
             <div class="row mt-3">
                 <div class="col-6">
                     <div class="canvas-options rounded">
-                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="W">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="W" id="wFigura">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="canvas-options rounded">
-                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="H">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="H" id="hFigura">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="canvas-options rounded">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="X1" id="x1Figura">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="canvas-options rounded">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Y1" id="h1Figura">
                     </div>
                 </div>
             </div>
@@ -71,18 +84,51 @@
             <div class="row mt-3 justify-content-center">
                 <div class="col-6">
                     <div class="canvas-options rounded">
-                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="R">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="R" id="rFigura">
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="canvas-options-container rounded mt-5">    
-            <div class="row">
-                <div class="col-6">
+        <div class="canvas-options-container rounded mt-5">
+            <label for="bgColor" class="form-label text-white">Background Color</label>    
+            <div class="row" id="bgColor">
+                <div class="col-4">
                     <div class="canvas-options rounded">
-                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Color">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Red" id="bgcolorRed">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="canvas-options rounded">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Green" id="bgcolorGreen">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="canvas-options rounded">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Blue" id="bgcolorBlue">
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+        <div class="canvas-options-container rounded mt-5">
+            <label for="bgColor" class="form-label text-white">Line Color</label>    
+            <div class="row" id="bgColor">
+                <div class="col-4">
+                    <div class="canvas-options rounded">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Red" id="linecolorRed">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="canvas-options rounded">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Green" id="linecolorGreen">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="canvas-options rounded">
+                        <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Blue" id="linecolorBlue">
                     </div>
                 </div>
             </div>
@@ -116,7 +162,8 @@
         methods: {
             agregarFigura(mouseX,mouseY){
                 if(this.tipoFigura != 'cursor'){
-                    this.figuras.push(new Figura(mouseX, mouseY, this.tipoFigura))
+                    this.figuras.push(new Figura(mouseX, mouseY, this.tipoFigura));
+                    console.log(this.figuras);
                 }
             },
             setFigura(shape){
@@ -134,6 +181,20 @@
                         sketch.ellipse(sketch.mouseX, sketch.mouseY, 50, 50);
                             break;
                     }
+            },
+            seleccionarFigura(index){
+                document.getElementById('xFigura').value = this.figuras[index].x;
+                document.getElementById('yFigura').value = this.figuras[index].y;
+                document.getElementById('hFigura').value = this.figuras[index].h;
+                document.getElementById('wFigura').value = this.figuras[index].w;
+                /* document.getElementById('x1Figura').value = this.figuras[index].x1;
+                document.getElementById('y1Figura').value = this.figuras[index].y1; */
+                document.getElementById('bgcolorRed').value = this.figuras[index].bgColor.red;
+                document.getElementById('bgcolorGreen').value = this.figuras[index].bgColor.green;
+                document.getElementById('bgcolorBlue').value = this.figuras[index].bgColor.blue;
+                document.getElementById('linecolorRed').value = this.figuras[index].lineColor.red;
+                document.getElementById('linecolorGreen').value = this.figuras[index].lineColor.green;
+                document.getElementById('linecolorBlue').value = this.figuras[index].lineColor.blue
             }
             
         },
