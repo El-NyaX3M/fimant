@@ -173,17 +173,16 @@
             agregarFigura(mouseX,mouseY){
                 if(this.tipoFigura != 'cursor'){
                     this.figuras.push(new Figura(mouseX, mouseY, this.tipoFigura));
-                    console.log(this.figuras);
-                    console.log(this.shapes);
                 }
             },
             setFigura(shape){
                 this.tipoFigura = shape;
                 console.log(this.tipoFigura);
             },
-            setSelectedFalse(){
-                this.figuras.forEach(element => {
+            reset(){
+                this.figuras.forEach((element,index) => {
                     element.select = false;
+                    document.getElementById('capa'+index).classList.remove('capa-activa');
                 });
             },
             previsual(sketch){
@@ -198,8 +197,9 @@
                             break;
                     }
             },
-            seleccionarFigura(index){
-                this.setSelectedFalse();
+            seleccionarFigura(index){       
+                this.reset();
+                document.getElementById('capa'+index).classList.add('capa-activa');
                 this.figuras[index].select = true;
                 document.getElementById('xFigura').value = this.figuras[index].x;
                 document.getElementById('yFigura').value = this.figuras[index].y;
