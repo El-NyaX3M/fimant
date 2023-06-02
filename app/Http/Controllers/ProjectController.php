@@ -23,7 +23,7 @@ class ProjectController extends Controller
         ]);
         $project->save();
         $id = $project->id;
-        return redirect()->route('projects.load', ['id' => $id]);
+        return redirect()->back()->with('success', 'ok');
     }
 
     public function load($id){

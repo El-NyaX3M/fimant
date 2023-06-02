@@ -44,7 +44,16 @@
                         </div>
                     </div>
                     <!-- end page title -->
-                    
+                    <div class="row mt-3">
+                      <div class="col-md-12">
+                          @if(session()->has('success'))
+                          <x-status-alert color="success" status="Hecho"></x-status-alert>
+                          @endif
+                          @if(session()->has('error'))
+                          <x-status-alert color="danger" status="Error"></x-status-alert>
+                          @endif
+                      </div>
+                  </div>
                 </div>
                 <!-- container-fluid -->
                 <!--Cartas de proyectos-->

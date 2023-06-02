@@ -18,7 +18,7 @@
             <button class="btn btn-outline-light btn-lg"><i class="fa-regular fa-circle fa-lg"></i></button>
             <button class="btn btn-outline-light btn-lg"><i class="fa-solid fa-slash fa-lg"></i></button>
             <button class="btn btn-outline-light btn-lg"><i class="fa-solid fa-font fa-lg"></i></button> --}}
-            <a id="titulo">Nombre</a> <!--Devolver nombre de proyecto-->
+            <a id="titulo">{{$project->name}}</a> <!--Devolver nombre de proyecto-->
             <a href="{{url('/projects')}}" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="regresar" id="backcss"><i class="fa-sharp fa-solid fa-arrow-left"></i></a>
             <a href="{{url('/projects')}}" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="guardar" id="savecss"><i class="fa-solid fa-floppy-disk"> Guardar</i></a>
         </div>
