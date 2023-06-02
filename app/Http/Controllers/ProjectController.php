@@ -15,17 +15,20 @@ class ProjectController extends Controller
         return view('projects', compact('projectsCount', 'projects'));
     }
 
-    public function create(Request $request){
-        Project::create([
+    public function store(Request $request){
+        $project = Project::create([
             'name' => $request->projectName,
             'id_user' => Auth::user()->id,
             'shapes' => json_encode(''),
         ]);
-        return view('canvas');
+        $project->save();
+        $id = $project->id;
+        return redirect()->route('projects.load', ['id' => $id]);
     }
 
-    public function load(){
-        return view('canvas');
+    public function load($id){
+        $project = Project::find($id);
+        return view('canvas', ['project' => $project]);
     }
 
     public function save(){

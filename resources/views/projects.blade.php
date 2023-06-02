@@ -56,7 +56,7 @@
                             <h4 class="card-title mb-2" id="nProyectos">{{$project->name}}</h4>
                             <h6 class="card-title mb-2" id="fechaP"> Fecha: {{$project->created_at}}.</h6>
                             <div class="text-end text-center">
-                                  <a href="{{url('/canvas')}}" class="btn btn-success">Abrir</a>
+                                  <a href="{{url('/canvas',$project->id)}}" class="btn btn-success">Abrir</a>
                             </div>
                         </div>
                       </div>
@@ -71,7 +71,7 @@
 
             <!--Modales-->
               <!-- Modal 1 -->
-              <form action="{{route('projects.create')}}" method="post">
+              <form action="{{route('projects.store')}}" method="post">
                 @csrf
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
