@@ -68,7 +68,12 @@
                           </div>
                             <div class="d-grid gap-2">
                                   <a href="{{url('/canvas',$project->id)}}" class="btn btn-success">Abrir</a>
-                                  <a href="{{url('/canvas',$project->id)}}" class="btn btn-danger btn-block">Borrar</a>
+                                  <form id="formEliminar{{$project->id}}" action="{{route('projects.delete',$project->id)}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="text" name="id" value="{{$project->id}}" hidden>
+                                  </form>
+                                  <button type="button" onclick="eliminar({{$project->id}})" class="btn btn-danger">Borrar</button>
                             </div>
                             <br>
                         </div>
@@ -134,5 +139,23 @@
       </div>
 </body>
 
+<script>
+  function eliminar(id){
+    Swal.fire({
+                title: '¿Estás seguro?',
+                text: "El proyecto no podrá ser recuperado.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#198754',
+                cancelButtonColor: '#dc3545',
+                confirmButtonText: 'Confirmar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("formEliminar"+id).submit();
+                }
+            })
+  }
+</script>
 
 </x-app-layout>

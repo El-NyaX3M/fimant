@@ -32,7 +32,7 @@ Route::group( ['middleware' => 'auth' ], function(){
     Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
     Route::post('/canvas',[ProjectController::class, 'store'])->name('projects.store');
     Route::get('/canvas/{id}', [ProjectController::class, 'load'])->name('projects.load');
-    Route::delete('/canvas/{id}', [ProjectController::class,'destroy'])->name('project.delete');
+    Route::delete('/canvas/{id}', [ProjectController::class,'destroy'])->name('projects.delete');
     Route::get('/prueba', function(){
         return view('canvasWork');
     });

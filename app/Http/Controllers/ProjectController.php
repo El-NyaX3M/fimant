@@ -35,9 +35,9 @@ class ProjectController extends Controller
         return view('projects');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $project = Project::find($id);
+        $project = Project::find($request->id);
         if ($project) {
             $project->delete();
             return redirect()->back()->with('success', 'ok');

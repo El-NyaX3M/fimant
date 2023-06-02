@@ -26,6 +26,12 @@
     <div class="col-2 bg-dark canvas-container">
         <p class="text-white ms-2 mt-2">Capas</p>
         <hr class="canvas-hr ms-1">
+        <div v-for="(figura,index) in figuras">
+            <h3 class="text-white">
+                @{{figura.figura}}
+            </h3>
+            
+        </div>
         
     </div>
 
@@ -94,7 +100,7 @@
 {{-- <script src="{{asset('js/sketch.js')}}"></script>
 <script src="{{asset('js/pila.js')}}"></script>
  --}}
-<script src="{{asset('js/figura.js')}}"></script>
+<script src="{{asset('js/figuraprueba.js')}}"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
     const { createApp } = Vue
@@ -111,8 +117,6 @@
             agregarFigura(mouseX,mouseY){
                 if(this.tipoFigura != 'cursor'){
                     this.figuras.push(new Figura(mouseX, mouseY, this.tipoFigura))
-                    //figura = 'cursor';
-                    console.log(mouseX+", "+mouseY);
                 }
                 /* else{
                     selectFigura();
@@ -153,9 +157,20 @@
                     var height = canvasDiv.offsetHeight;
                     sketch.createCanvas(width, height);
                 };
+                
                 sketch.draw = () => {
-                    sketch.background(125);
+                    sketch.background(255);
+                    for (let i = this.figuras.length - 1; i >= 0; i--) {
+                            this.figuras[i].draw(sketch);
+                        }
                 };
+
+                sketch.mouseClicked = () =>{
+                    if(sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height){
+                        this.agregarFigura();
+                    }
+                    
+                }
             };
             let myp5 = new p5(s, 'contenedorCanvas');
         },
