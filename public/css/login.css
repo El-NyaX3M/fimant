@@ -159,13 +159,13 @@
   color: rgb(138, 138, 138);
 }
 #backcss{
-  position: relative;
-  right: -875px;
+  position: absolute;
+  right: 12%;
 }
 
 #savecss{
-  position: relative;
-  right: -890px;
+  position: absolute;
+  right: 1%;
 }
 #titulo{
   color: white;
