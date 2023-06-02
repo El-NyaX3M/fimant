@@ -157,7 +157,7 @@
 
                 sketch.mouseClicked = () =>{
                     if(sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height){
-                        this.agregarFigura();
+                        this.agregarFigura(sketch.mouseX,sketch.mouseY);
                     }
                     if(this.tipoFigura==="cursor"){
                         sketch.selectFigura();
