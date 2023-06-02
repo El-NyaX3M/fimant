@@ -66,9 +66,9 @@
                             <h4 class="card-title mb-2" id="nProyectos">{{$project->name}}</h4>
                             <h6 class="card-title mb-2" id="fechaP"> Fecha: {{$project->created_at}}.</h6>
                           </div>
-                            <div class="text-end text-center">
+                            <div class="d-grid gap-2">
                                   <a href="{{url('/canvas',$project->id)}}" class="btn btn-success">Abrir</a>
-                                  <a href="{{url('/canvas',$project->id)}}" class="btn btn-danger">Borrar</a>
+                                  <a href="{{url('/canvas',$project->id)}}" class="btn btn-danger btn-block">Borrar</a>
                             </div>
                             <br>
                         </div>

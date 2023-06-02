@@ -34,4 +34,14 @@ class ProjectController extends Controller
     public function save(){
         return view('projects');
     }
+
+    public function destroy($id)
+    {
+        $project = Project::find($id);
+        if ($project) {
+            $project->delete();
+            return redirect()->back()->with('success', 'ok');
+        }
+        return redirect()->back()->with('error', 'error');
+    }
 }
