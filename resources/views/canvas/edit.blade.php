@@ -20,7 +20,13 @@
             <button class="btn btn-outline-light btn-lg"><i class="fa-solid fa-font fa-lg"></i></button> --}}
             <a id="titulo">{{$project->name}}</a> <!--Devolver nombre de proyecto-->
             <a href="{{url('/projects')}}" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="regresar" id="backcss"><i class="fa-sharp fa-solid fa-arrow-left"></i></a>
-            <a href="{{url('/projects')}}" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="guardar" id="savecss"><i class="fa-solid fa-floppy-disk"> Guardar</i></a>
+            <form action="{{route('projects.save',$project->id)}}" method="post" id="formGuardar">
+                @csrf
+                @method('put')
+                <button type="button" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="guardar" id="savecss" @click="guardar()"><i class="fa-solid fa-floppy-disk"> Guardar</i></button>
+                <input type="hidden" name="id" value="{{$project->id}}">
+                <input type="hidden" name="shapes" value="" id="shapes">      
+            </form>
         </div>
     </div>
     <div class="col-2 bg-dark canvas-container-capas">
@@ -30,7 +36,6 @@
             <button type="button" class="btn btn-outline-light btn-block text-start" @click="seleccionarFigura(index)" :id="'capa'+index">
                 @{{figura.figura}}
             </button>
-            
         </div>
         
     </div>
@@ -154,6 +159,7 @@
     createApp({
         data() {
             return {
+                shapes: @json($project->shapes),
                 figuras: [],
                 tipoFigura: "cursor",
                 message: 'Hello Vue!'
@@ -164,6 +170,7 @@
                 if(this.tipoFigura != 'cursor'){
                     this.figuras.push(new Figura(mouseX, mouseY, this.tipoFigura));
                     console.log(this.figuras);
+                    console.log(this.shapes);
                 }
             },
             setFigura(shape){
@@ -195,11 +202,27 @@
                 document.getElementById('linecolorRed').value = this.figuras[index].lineColor.red;
                 document.getElementById('linecolorGreen').value = this.figuras[index].lineColor.green;
                 document.getElementById('linecolorBlue').value = this.figuras[index].lineColor.blue
+            },
+            guardar(){
+                document.getElementById('shapes').value = JSON.stringify(this.figuras);
+                console.log(document.getElementById('shapes').value);
+                document.getElementById('formGuardar').submit();
             }
             
         },
+        created() {
+            if(this.shapes!=null){
+                this.shapes = JSON.parse(this.shapes);
+                this.shapes.forEach(element => {
+                    this.figuras.push(new Figura(element.x,element.y,element.figura));
+                });
+            }
+            
+
+        },
         mounted() {
 
+            
             const s = ( sketch ) => {
                 sketch.setup = () =>{
                     var canvasDiv = document.getElementById('contenedorCanvas');

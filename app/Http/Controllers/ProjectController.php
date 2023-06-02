@@ -22,17 +22,21 @@ class ProjectController extends Controller
             'shapes' => json_encode(''),
         ]);
         $project->save();
-        $id = $project->id;
         return redirect()->back()->with('success', 'ok');
     }
 
     public function load($id){
         $project = Project::find($id);
-        return view('canvas', ['project' => $project]);
+        return view('canvas.edit', ['project' => $project]);
     }
 
-    public function save(){
-        return view('projects');
+    public function update(Request $request){
+        $project = Project::where('id',$request->id)->first();
+        if($project){
+            $project->update($request->all());
+            return redirect()->back()->with('success', 'ok');
+        }
+        return redirect()->back()->with('error', 'error');
     }
 
     public function destroy(Request $request)
