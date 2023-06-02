@@ -181,6 +181,11 @@
                 this.tipoFigura = shape;
                 console.log(this.tipoFigura);
             },
+            setSelectedFalse(){
+                this.figuras.forEach(element => {
+                    element.select = false;
+                });
+            },
             previsual(sketch){
                 sketch.stroke(1);
                 sketch.fill('rgba(200, 200, 200, 0.2)');
@@ -194,6 +199,8 @@
                     }
             },
             seleccionarFigura(index){
+                this.setSelectedFalse();
+                this.figuras[index].select = true;
                 document.getElementById('xFigura').value = this.figuras[index].x;
                 document.getElementById('yFigura').value = this.figuras[index].y;
                 document.getElementById('hFigura').value = this.figuras[index].h;
@@ -222,7 +229,8 @@
             },
             eliminarFigura(index){
                 this.figuras.splice(index,1);
-            }
+            },
+
             
         },
         created() {
