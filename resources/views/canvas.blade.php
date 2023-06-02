@@ -23,7 +23,7 @@
             <a href="{{url('/projects')}}" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="guardar" id="savecss"><i class="fa-solid fa-floppy-disk"> Guardar</i></a>
         </div>
     </div>
-    <div class="col-2 bg-dark canvas-container">
+    <div class="col-2 bg-dark canvas-container-capas">
         <p class="text-white ms-2 mt-2">Capas</p>
         <hr class="canvas-hr ms-1">
         <div v-for="(figura,index) in figuras">

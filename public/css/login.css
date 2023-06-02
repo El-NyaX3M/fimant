@@ -59,6 +59,28 @@
     top: -20px;
   } */
  
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px black; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(140, 136, 136); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c0bfbf; 
+  }
+
   .bg-blur-landing{
     background-image: url("https://images.businessonline.it/articoli/original/come-fare-per-aumentare-il-reddito-di-cittadinanza.jpg");
     filter: blur(8px);
@@ -92,9 +114,17 @@
     color: black;
 }
 
+.canvas-container-capas{
+  border: 1px solid black;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+
 .canvas-container{
   border: 1px solid black;
   min-height: 100vh;
+  max-height: 100vh;
 }
 
 .canvas-hr{
