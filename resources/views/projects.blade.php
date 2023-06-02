@@ -47,7 +47,7 @@
                     <div class="row mt-3">
                       <div class="col-md-12">
                           @if(session()->has('success'))
-                          <x-status-alert color="success" status="Hecho"></x-status-alert>
+                          <x-status-alert color="primary" status="Hecho"></x-status-alert>
                           @endif
                           @if(session()->has('error'))
                           <x-status-alert color="danger" status="Error"></x-status-alert>
@@ -94,7 +94,7 @@
                       
                       <h5>Nombre del proyecto:</h5>
                       <div class="col">
-                        <input type="text" class="form-control" placeholder="Nombre del Proyecto..." aria-label="Nombre del Proyecto..." name="projectName">
+                        <input type="text" class="form-control" placeholder="Nombre del Proyecto..." aria-label="Nombre del Proyecto..." name="projectName" required>
                       </div>
                     </div>
                     <div class="modal-footer">
