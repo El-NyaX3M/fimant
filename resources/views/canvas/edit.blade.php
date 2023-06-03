@@ -131,17 +131,17 @@
                     <div class="row" id="bgColor">
                         <div class="col-4">
                             <div class="canvas-options rounded">
-                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="Red" id="linecolorRed">
+                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="Red" id="linecolorRed" v-model="figuraSeleccionada.lineColor.red">
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="canvas-options rounded">
-                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="Green" id="linecolorGreen">
+                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="Green" id="linecolorGreen" v-model="figuraSeleccionada.lineColor.green">
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="canvas-options rounded">
-                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="Blue" id="linecolorBlue">
+                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="Blue" id="linecolorBlue" v-model="figuraSeleccionada.lineColor.blue">
                             </div>
                         </div>
                     </div>
@@ -174,6 +174,8 @@
                 tipoFigura: "cursor",
                 figura: "cursor",
                 figuraSeleccionada: null,
+                primerClick: null,
+                segundoClick: null,
             }
         },
         methods: {
@@ -236,10 +238,17 @@
                 this.shapes = JSON.parse(this.shapes);
                 this.shapes.forEach(element => {
                     this.figuras.push(new Figura(element.x,element.y,element.figura));
-                    if (element.figura==="rectángulo") {
+                    if (element.figura === 'línea') {
+                        this.figuras[this.figuras.length-1].actualizarMedidasLinea(element.x,element.y,element.x1, element.y1);
+                    }else if (element.figura === 'círculo') {
+                        this.figuras[this.figuras.length-1].actualizarRelleno(element.bgColor.red, element.bgColor.green, element.bgColor.blue, element.bgColor.alpha);
+                        this.figuras[this.figuras.length-1].actualizarBorde(element.lineColor.red, element.lineColor.green, element.lineColor.blue, element.lineColor.weight);
+                        this.figuras[this.figuras.length-1].actualizarMedidas(element.x,element.y,element.w,element.h);
+                    }else if(element.figura === 'rectángulo'){
+                        this.figuras[this.figuras.length-1].actualizarRelleno(element.bgColor.red, element.bgColor.green, element.bgColor.blue, element.bgColor.alpha);
+                        this.figuras[this.figuras.length-1].actualizarBorde(element.lineColor.red, element.lineColor.green, element.lineColor.blue, element.lineColor.weight);
                         this.figuras[this.figuras.length-1].actualizarMedidas(element.x,element.y,element.w,element.h);
                         this.figuras[this.figuras.length-1].actualizarEsquinas(element.r);
-                        this.figuras[this.figuras.length-1].actualizarRelleno(element.bgColor.red, element.bgColor.green, element.bgColor.blue, element.bgColor.alpha);
                     }
                     
                 });

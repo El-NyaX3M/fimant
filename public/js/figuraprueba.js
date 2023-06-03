@@ -1,21 +1,25 @@
 class Figura{
     constructor(x, y, figura){
-        
+        this.w = 50;
+        this.h = 50;
         switch (figura){
             case 'rectángulo':
-                this.x = x;
-                this.y = y;
-                this.w = 50;
-                this.h = 50;
+                this.x = x - 25;
+                this.y = y - 25;
                 this.r = 0;
                 break;
             case 'círculo':
-                this.w = 50;
-                this.h = 50;
-                this.x = x;
-                this.y = y;
+                this.x = x - 25;
+                this.y = y - 25;
                 this.x1 = x;
                 this.y1 = y;
+                break;
+            case 'línea':
+                this.x = x - 25;
+                this.y = y - 25;
+                this.x1 = 100;
+                this.y1 = 100;
+                break;
         }
         
         this.bgColor = {
@@ -43,17 +47,26 @@ class Figura{
             stroke.stroke(this.lineColor.red, this.lineColor.green, this.lineColor.blue);
         } 
         else stroke.noStroke();
-        
+
+        if (this.figura === 'círculo' || this.figura === 'rectángulo') {
+            this.bg = true;
+        } else {
+            this.bg = false;
+        }
         (this.bg) ? stroke.fill('rgba('+this.bgColor.red+', '+this.bgColor.green+', '+this.bgColor.blue+', '+this.bgColor.alpha+')') : stroke.noFill();    
         
         
         switch(this.figura){
             case 'rectángulo':
-            stroke.rect(this.x, this.y, this.w, this.h,this.r);
+                stroke.rect(this.x, this.y, this.w, this.h,this.r);
                 //console.log('hola wapo');
                 break;
             case 'círculo':
-            stroke.ellipse(this.x1, this.y1, this.w, this.h);
+                stroke.ellipse(this.x1, this.y1, this.w, this.h);
+                break;
+            case 'línea':
+                stroke.line(this.x, this.y, this.x1, this.y1);
+                break;
         }
         
         if(this.select){
@@ -72,6 +85,13 @@ class Figura{
         this.h = h;
     }
 
+    actualizarMedidasLinea(x, y, x1,y1) {
+        this.x = x;
+        this.y = y;
+        this.x1 = x1;
+        this.y1 = y1;
+    }
+
     actualizarEsquinas(r) {
         this.r = r;
     }
@@ -81,6 +101,13 @@ class Figura{
         this.bgColor.green = green;
         this.bgColor.blue = blue;
         this.bgColor.alpha = alpha;
+    }
+
+    actualizarBorde(red,green,blue,weight) {
+        this.lineColor.red = red;
+        this.lineColor.green = green;
+        this.lineColor.blue = blue;
+        this.lineColor.weight = weight;
     }
 
     selected(){
