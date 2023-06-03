@@ -1,15 +1,19 @@
 class Figura{
     constructor(x, y, figura){
-        this.w = 50;
-        this.h = 50;
+        
         switch (figura){
             case 'rectángulo':
-                this.x = x - this.w/2;
-                this.y = y - this.h/2;
+                this.x = x;
+                this.y = y;
+                this.w = 50;
+                this.h = 50;
+                this.r = 0;
                 break;
             case 'círculo':
-                this.x = x - this.w/2;
-                this.y = y - this.h/2;
+                this.w = 50;
+                this.h = 50;
+                this.x = x;
+                this.y = y;
                 this.x1 = x;
                 this.y1 = y;
         }
@@ -45,7 +49,7 @@ class Figura{
         
         switch(this.figura){
             case 'rectángulo':
-            stroke.rect(this.x, this.y, this.w, this.h);
+            stroke.rect(this.x, this.y, this.w, this.h,this.r);
                 //console.log('hola wapo');
                 break;
             case 'círculo':
@@ -59,6 +63,24 @@ class Figura{
             stroke.rect(this.x - 15, this.y - 15, this. w + this.lineColor.weight + 15, this.h + this.lineColor.weight + 15);
         }
         
+    }
+
+    actualizarMedidas(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+
+    actualizarEsquinas(r) {
+        this.r = r;
+    }
+
+    actualizarRelleno(red,green,blue,alpha) {
+        this.bgColor.red = red;
+        this.bgColor.green = green;
+        this.bgColor.blue = blue;
+        this.bgColor.alpha = alpha;
     }
 
     selected(){
