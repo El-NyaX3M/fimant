@@ -5,7 +5,7 @@
           <!-- Sidebar -->
           <div class="col-md-2 sidebar text-center min-vh-100" style="background-color: rgba(0,0,0,.9);">
             <h1 class="mt-4" style="color:white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Proyectos</h1>
-            <br>
+            <h1 class="mt-4" style="color:white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">De:</h1>
             <br>
             <p style="color:white;font-size:25px;">{{Auth::user()->name}}</p>
             <br>
@@ -60,11 +60,15 @@
                 <div class="row p-2">
                     @foreach ($projects as $project)
                         <div class="card col-2 text-center m-2" style="background-color: rgba(49,50,57,255);">
+                      @if ($project->cover)
                       <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="{{$project->cover}}" alt="Card image cap" style="width: 150px;height: 150px;">
+                      @else
+                      <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="https://pbs.twimg.com/media/BghFfeGIUAERzGb.jpg:large" alt="Card image cap" style="width: 150px;height: 150px;">
+                      @endif
                         <div class="card-body">
                           <div>
                             <h4 class="card-title mb-2" id="nProyectos">{{$project->name}}</h4>
-                            <h6 class="card-title mb-2" id="fechaP"> Fecha: {{$project->created_at}}.</h6>
+                            <h6 class="card-title mb-2" id="fechaP"> Hora y Fecha de Creacion (A/M/D/H): {{$project->created_at}}.</h6>
                           </div>
                             <div class="d-grid gap-2">
                                   <a href="{{url('/canvas',$project->id)}}" class="btn btn-success">Abrir</a>
