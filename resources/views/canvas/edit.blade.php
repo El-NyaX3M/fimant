@@ -32,20 +32,23 @@
             
         </div>
     </div>
-    <div class="col-2 bg-dark canvas-container-capas">
+    <div class="col-3 bg-dark canvas-container-capas">
         <p class="text-white ms-2 mt-2">Capas</p>
         <hr class="canvas-hr ms-1">
-        <div v-for="(figura,index) in figuras" class="mt-3">
+        <div v-for="(figura,index) in figuras" class="mt-3 mb-3">
             <button type="button" class="btn btn-outline-light btn-block w-50 text-start" @click="seleccionarFigura(index)" :id="'capa'+index">
                 @{{figura.figura}}
             </button>
-            <button type="button" class="btn btn-outline-light btn-block ms-2 text-start" @click="setHidden(index)"><i class=" fa-regular fa-eye-slash fa-xs" v-if="figuras[index].hidden"></i> <i class="fa-solid fa-eye fa-xs" v-else></i> </button>
-            <button type="button" class="btn btn-outline-light btn-block ms-2 text-start" @click="eliminarFigura(index)"><i class="fa-solid fa-trash fa-xs"></i></button>
+            <button type="button" class="btn btn-outline-light ms-2" @click="setHidden(index)"><i class=" fa-regular fa-eye-slash fa-xs" v-if="figuras[index].hidden"></i> <i class="fa-solid fa-eye fa-xs" v-else></i> </button>
+            <button type="button" class="btn btn-outline-danger ms-2" @click="eliminarFigura(index)"><i class="fa-solid fa-trash fa-xs"></i></button>
+                <button type="button" class="btn btn-outline-light ms-2" v-if="index!==0" @click="cambiarOrden(index,'subir')"><i class="fa-sharp fa-solid fa-arrow-up fa-2xs"></i></button>
+                <button type="button" class="btn btn-outline-light ms-2" v-if="index!=figuras.length-1" @click="cambiarOrden(index,'bajar')"><i class="fa-sharp fa-solid fa-arrow-down fa-2xs"></i></button>
+            
         </div>
         
     </div>
 
-    <div class="col-8 bg-light canvas-container p-0" id="contenedorCanvas"></div>
+    <div class="col-7 bg-light canvas-container p-0" id="contenedorCanvas"></div>
 
     <div class="col-2 bg-dark canvas-container">
         <p class="text-white ms-2 mt-2">Diseño</p>
@@ -248,6 +251,17 @@
             eliminarFigura(index){
                 this.figuras.splice(index,1);
             },
+            cambiarOrden(index,direccion){
+                let aux = this.figuras[index];
+                if (direccion==='bajar') {
+                    this.figuras[index] = this.figuras[index+1];
+                    this.figuras[index+1] = aux;
+                }else{
+                    this.figuras[index] = this.figuras[index-1];
+                    this.figuras[index-1] = aux;
+                }
+                
+            }
 
             
         },
