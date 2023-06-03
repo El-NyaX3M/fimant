@@ -15,8 +15,8 @@ class Figura{
                 this.y1 = y;
                 break;
             case 'línea':
-                this.x = x - 25;
-                this.y = y - 25;
+                this.x = x;
+                this.y = y;
                 this.x1 = 100;
                 this.y1 = 100;
                 break;

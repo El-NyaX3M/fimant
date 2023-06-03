@@ -60,7 +60,7 @@
                 <div class="row p-2">
                     @foreach ($projects as $project)
                         <div class="card col-2 text-center m-2" style="background-color: rgba(49,50,57,255);">
-                      <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="https://pbs.twimg.com/media/BghFfeGIUAERzGb.jpg:large" alt="Card image cap" style="width: 150px;height: 150px;">
+                      <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="{{$project->cover}}" alt="Card image cap" style="width: 150px;height: 150px;">
                         <div class="card-body">
                           <div>
                             <h4 class="card-title mb-2" id="nProyectos">{{$project->name}}</h4>

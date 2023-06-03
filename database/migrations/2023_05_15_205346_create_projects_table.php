@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('id_user');
             $table->json('shapes')->nullable();
+            $table->longText('cover')->nullable();
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');

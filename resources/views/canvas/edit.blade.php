@@ -26,7 +26,8 @@
                 @csrf
                 @method('put')
                 <input type="hidden" name="id" value="{{$project->id}}">
-                <input type="hidden" name="shapes" value="" id="shapes">     
+                <input type="hidden" name="shapes" value="" id="shapes">
+                <input type="hidden" name="cover" value="" id="cover">      
             </form>
             
         </div>
@@ -65,15 +66,28 @@
                         </div>
                     </div>
                     
-                    <div class="row mt-3">
-                        <div class="col-6" v-if="figura!='texto'">
+                    <div class="row mt-3" v-if="figura!='texto' && figura!='línea'">
+                        <div class="col-6" >
                             <div class="canvas-options rounded">
                                 <input type="number" class="canvas-inputs bg-dark rounded" placeholder="W" id="wFigura" v-model="figuraSeleccionada.w">
                             </div>
                         </div>
-                        <div class="col-6" v-if="figura=='rectángulo' || figura=='círculo'">
+                        <div class="col-6">
                             <div class="canvas-options rounded">
                                 <input type="number" class="canvas-inputs bg-dark rounded" placeholder="H" id="hFigura" v-model="figuraSeleccionada.h">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3" v-if="figura==='línea'">
+                        <div class="col-6" >
+                            <div class="canvas-options rounded">
+                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="X1" id="x1Figura" v-model="figuraSeleccionada.x1">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="canvas-options rounded">
+                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="Y1" id="y1Figura" v-model="figuraSeleccionada.y1">
                             </div>
                         </div>
                     </div>
@@ -174,8 +188,8 @@
                 tipoFigura: "cursor",
                 figura: "cursor",
                 figuraSeleccionada: null,
-                primerClick: null,
-                segundoClick: null,
+                primerClick: [],
+                segundoClick: [],
             }
         },
         methods: {
@@ -212,11 +226,15 @@
                 document.getElementById('capa'+index).classList.add('capa-activa');
                 this.figuraSeleccionada = this.figuras[index];
                 this.figuraSeleccionada.select = true;
-                this.figura = this.figuraSeleccionada.figura;    
+                this.figura = this.figuraSeleccionada.figura;
+                console.log(this.figura);    
             },
             guardar(){
+                let canvas = document.getElementById("defaultCanvas0");
+                let cover = canvas.toDataURL('image/png');
                 document.getElementById('shapes').value = JSON.stringify(this.figuras);
-                console.log(document.getElementById('shapes').value);
+                console.log(document.getElementById('shapes').value);      
+                document.getElementById("cover").value = cover;
                 document.getElementById('formGuardar').submit();
             },
             setHidden(index){
@@ -240,6 +258,7 @@
                     this.figuras.push(new Figura(element.x,element.y,element.figura));
                     if (element.figura === 'línea') {
                         this.figuras[this.figuras.length-1].actualizarMedidasLinea(element.x,element.y,element.x1, element.y1);
+                        this.figuras[this.figuras.length-1].actualizarBorde(element.lineColor.red, element.lineColor.green, element.lineColor.blue, element.lineColor.weight);
                     }else if (element.figura === 'círculo') {
                         this.figuras[this.figuras.length-1].actualizarRelleno(element.bgColor.red, element.bgColor.green, element.bgColor.blue, element.bgColor.alpha);
                         this.figuras[this.figuras.length-1].actualizarBorde(element.lineColor.red, element.lineColor.green, element.lineColor.blue, element.lineColor.weight);

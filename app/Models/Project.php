@@ -14,6 +14,7 @@ class Project extends Model
         'name',
         'id_user',
         'shapes',
+        'cover'
     ];
 
     public function user(){
