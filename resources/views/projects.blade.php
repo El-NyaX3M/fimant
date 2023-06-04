@@ -63,7 +63,7 @@
                       @if ($project->cover)
                       <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="{{$project->cover}}" alt="Card image cap" style="width: 150px;height: 150px;">
                       @else
-                      <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="https://pbs.twimg.com/media/BghFfeGIUAERzGb.jpg:large" alt="Card image cap" style="width: 150px;height: 150px;">
+                      <img class="card-img-top img-fluid m-2 rounded mx-auto d-block" src="\img\img-noIcons\Mensaje.png" alt="Card image cap" style="width: 150px;height: 150px;">
                       @endif
                         <div class="card-body">
                           <div>
