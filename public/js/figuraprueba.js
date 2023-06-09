@@ -9,8 +9,8 @@ class Figura {
                 this.r = 0;
                 break;
             case "círculo":
-                this.x = x - 25;
-                this.y = y - 25;
+                this.x = x;
+                this.y = y;
                 break;
             case "línea":
                 this.x = x;
@@ -80,6 +80,7 @@ class Figura {
                 //console.log('hola wapo');
                 break;
             case "círculo":
+                stroke.ellipseMode(stroke.CORNERS);
                 stroke.ellipse(this.x, this.y, this.w, this.h);
                 break;
             case "línea":

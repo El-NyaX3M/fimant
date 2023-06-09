@@ -233,6 +233,7 @@
                             sketch.rect(sketch.mouseX-25, sketch.mouseY-25, 50, 50);
                             break;
                         case 'círculo':
+                            sketch.ellipseMode(sketch.CENTER);
                             sketch.ellipse(sketch.mouseX, sketch.mouseY, 50, 50);
                             break;
                         case 'texto':
@@ -359,7 +360,7 @@
                                     break;
                                 }
                             }else if (objeto.figura === "círculo") {
-                                if(sketch.mouseX >= (objeto.x - objeto.x / 2) && sketch.mouseX <= objeto.x + objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y + objeto.h){
+                                if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.x && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y){
                                     this.reset();
                                     objeto.selected();
                                     shapeModif = objeto;
