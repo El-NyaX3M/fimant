@@ -228,6 +228,7 @@
             previsual(sketch){
                 sketch.stroke(1);
                 sketch.fill('rgba(200, 200, 200, 0.2)');
+                sketch.strokeWeight(1);
                     switch(this.tipoFigura){
                         case 'rectángulo':
                             sketch.rect(sketch.mouseX-25, sketch.mouseY-25, 50, 50);

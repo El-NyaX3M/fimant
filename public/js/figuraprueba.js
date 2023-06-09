@@ -107,6 +107,7 @@ class Figura {
                     //console.log('hola wapo');
                     break;
                 case "círculo":
+                    stroke.ellipseMode(stroke.CORNERS);
                     stroke.ellipse(
                         this.x,
                         this.y,
