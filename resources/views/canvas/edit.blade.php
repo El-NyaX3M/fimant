@@ -56,7 +56,20 @@
         <div v-if="figuraSeleccionada">
                 <div class="canvas-options-container rounded" >
 
-                    <div class="row">
+                    <div class="row" v-if="figura==='texto'">
+                        <div class="col-12">
+                            <div class="canvas-options rounded">
+                                <input type="text" class="canvas-inputs bg-dark rounded" placeholder="Texto" id="palabraFigura" v-model="figuraSeleccionada.palabra">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="canvas-options rounded">
+                                <input type="number" class="canvas-inputs bg-dark rounded" placeholder="Fuente" id="fuenteFigura" v-model="figuraSeleccionada.fuente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3" >
                         <div class="col-6">
                             <div class="canvas-options rounded">
                                 <input type="number" class="canvas-inputs bg-dark rounded" placeholder="X" id="xFigura" v-model="figuraSeleccionada.x">
@@ -121,7 +134,7 @@
         
                 </div>
         
-                <div class="canvas-options-container rounded mt-5" v-if="figura==='rectángulo' || figura==='círculo'">
+                <div class="canvas-options-container rounded mt-5" v-if="figura!=='línea'">
                     <label for="bgColor" class="form-label text-white">Background Color</label>    
                     <div class="row" id="bgColor">
                         <div class="col-4">
@@ -143,7 +156,7 @@
             
                 </div>
         
-                <div class="canvas-options-container rounded mt-5">
+                <div class="canvas-options-container rounded mt-5" v-if="figura!=='texto'">
                     <label for="bgColor" class="form-label text-white">Line Color</label>    
                     <div class="row" id="bgColor">
                         <div class="col-4">
@@ -217,11 +230,15 @@
                 sketch.fill('rgba(200, 200, 200, 0.2)');
                     switch(this.tipoFigura){
                         case 'rectángulo':
-                        sketch.rect(sketch.mouseX-25, sketch.mouseY-25, 50, 50);
+                            sketch.rect(sketch.mouseX-25, sketch.mouseY-25, 50, 50);
                             break;
                         case 'círculo':
-                        sketch.ellipse(sketch.mouseX, sketch.mouseY, 50, 50);
+                            sketch.ellipse(sketch.mouseX, sketch.mouseY, 50, 50);
                             break;
+                        case 'texto':
+                            sketch.textSize(20);
+                            sketch.text('Texto',sketch.mouseX, sketch.mouseY);
+                            break;    
                     }
             },
             seleccionarFigura(index){     
@@ -282,6 +299,9 @@
                         this.figuras[this.figuras.length-1].actualizarBorde(element.lineColor.red, element.lineColor.green, element.lineColor.blue, element.lineColor.weight);
                         this.figuras[this.figuras.length-1].actualizarMedidas(element.x,element.y,element.w,element.h);
                         this.figuras[this.figuras.length-1].actualizarEsquinas(element.r);
+                    }else if(element.figura === 'texto'){
+                        this.figuras[this.figuras.length-1].actualizarTexto(element.palabra, element.x, element.y, element.fuente);
+                        this.figuras[this.figuras.length-1].actualizarRelleno(element.bgColor.red, element.bgColor.green, element.bgColor.blue, element.bgColor.alpha);
                     }
                     
                 });
@@ -310,22 +330,19 @@
                         }
                 };
 
-                sketch.mouseClicked = () =>{
-                    if(this.tipoFigura!="cursor" && sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height){
-                        this.agregarFigura(sketch.mouseX,sketch.mouseY);
-                    }
-                    if(this.tipoFigura==="cursor" && sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height){
-                        sketch.selectFigura();
-                    }   
-                }
+/*                 sketch.mouseClicked = () =>{
+                    
+                } */
 
                 sketch.selectFigura = () => {
                         for(let objeto of this.figuras){
                             if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.x + objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y + objeto.h){
+                                this.figuraSeleccionada = null;
                                 objeto.diselect();
                                 document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.remove('capa-activa');
                             }
                             else{
+                                this.figuraSeleccionada = null;
                                 objeto.diselect();
                                 shapeModif = 'none';
                             }
@@ -341,6 +358,38 @@
                                 break;
                             }
                         }
+                }
+
+                sketch.mousePressed = () => {
+                    if(this.tipoFigura!=="cursor" && this.tipoFigura!=="texto" && sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height){
+                        if (this.primerClick.length === 0) {
+                            this.primerClick = {
+                                        x: sketch.mouseX,
+                                        y: sketch.mouseY,
+                            }
+                        }else if (this.segundoClick.length === 0) {
+                            this.segundoClick = {
+                                        x: sketch.mouseX,
+                                        y: sketch.mouseY,
+                            }
+
+                            this.agregarFigura(this.primerClick.x, this.segundoClick.y);
+                            if (this.tipoFigura==="línea") {
+                                this.figuras[this.figuras.length-1].actualizarMedidasLinea(this.primerClick.x,this.primerClick.y, this.segundoClick.x, this.segundoClick.y);
+                            }else if (this.tipoFigura === "rectángulo" || this.tipoFigura === "círculo") {
+                                this.figuras[this.figuras.length-1].actualizarMedidas(this.primerClick.x,this.primerClick.y, this.segundoClick.x, this.segundoClick.y);
+                            }
+                            
+                            this.primerClick = [];
+                            this.segundoClick = [];
+
+                        }
+                    }else if(this.tipoFigura==="texto" && sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height){
+                        this.agregarFigura(sketch.mouseX, sketch.mouseY);
+                    }
+                    if(this.tipoFigura==="cursor" && sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height){
+                        sketch.selectFigura();
+                    }               
                 }
             };
             let myp5 = new p5(s, 'contenedorCanvas');
