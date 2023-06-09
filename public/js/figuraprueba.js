@@ -82,7 +82,6 @@ class Figura {
                 //console.log('hola wapo');
                 break;
             case "círculo":
-                stroke.ellipseMode(CORNER);
                 stroke.ellipse(this.x1, this.y1, this.w, this.h);
                 break;
             case "línea":
