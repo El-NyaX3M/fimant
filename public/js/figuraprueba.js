@@ -11,8 +11,6 @@ class Figura {
             case "círculo":
                 this.x = x - 25;
                 this.y = y - 25;
-                this.x1 = x;
-                this.y1 = y;
                 break;
             case "línea":
                 this.x = x;
@@ -82,7 +80,7 @@ class Figura {
                 //console.log('hola wapo');
                 break;
             case "círculo":
-                stroke.ellipse(this.x1, this.y1, this.w, this.h);
+                stroke.ellipse(this.x, this.y, this.w, this.h);
                 break;
             case "línea":
                 stroke.line(this.x, this.y, this.x1, this.y1);
@@ -109,8 +107,8 @@ class Figura {
                     break;
                 case "círculo":
                     stroke.ellipse(
-                        this.x1,
-                        this.y1,
+                        this.x,
+                        this.y,
                         this.w + 30,
                         this.h + 30
                     );
@@ -131,6 +129,7 @@ class Figura {
         this.w = w;
         this.h = h;
     }
+    
 
     actualizarMedidasLinea(x, y, x1, y1) {
         this.x = x;

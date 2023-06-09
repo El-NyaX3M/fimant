@@ -69,7 +69,7 @@
                         </div>
                     </div>
 
-                    <div class="row mt-3" >
+                    <div class="row mt-3">
                         <div class="col-6">
                             <div class="canvas-options rounded">
                                 <input type="number" class="canvas-inputs bg-dark rounded" placeholder="X" id="xFigura" v-model="figuraSeleccionada.x">
@@ -385,13 +385,13 @@
                                         y: sketch.mouseY,
                             }
 
-                            this.agregarFigura(this.primerClick.x, this.segundoClick.y);
+                            this.agregarFigura(this.primerClick.x, this.primerClick.y);
                             if (this.tipoFigura==="línea") {
                                 this.figuras[this.figuras.length-1].actualizarMedidasLinea(this.primerClick.x,this.primerClick.y, this.segundoClick.x, this.segundoClick.y);
-                            }else if (this.tipoFigura === "rectángulo") {
+                            }else if (this.tipoFigura === "rectángulo" ) {
                                 this.figuras[this.figuras.length-1].actualizarMedidas(this.primerClick.x,this.primerClick.y, this.segundoClick.x - this.primerClick.x, this.segundoClick.y - this.primerClick.y);
                             }else if (this.tipoFigura === "círculo") {
-                                this.figuras[this.figuras.length-1].actualizarMedidas(this.primerClick.x,this.primerClick.y, this.segundoClick.x - this.primerClick.x, this.segundoClick.y - this.primerClick.y);
+                                this.figuras[this.figuras.length-1].actualizarMedidas(this.primerClick.x,this.primerClick.y, this.segundoClick.x, this.segundoClick.y);
                             }
                             
                             this.primerClick = [];
