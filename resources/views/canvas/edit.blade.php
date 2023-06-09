@@ -330,9 +330,9 @@
                         }
                 };
 
-/*                 sketch.mouseClicked = () =>{
-                    
-                } */
+                sketch.mouseClicked = () =>{
+                    console.log(sketch.mouseX+","+sketch.mouseY);
+                }
 
                 sketch.selectFigura = () => {
                         for(let objeto of this.figuras){
@@ -348,14 +348,26 @@
                             }
                         }
                         for(let objeto of this.figuras){
-                            if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.x + objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y + objeto.h){
-                                this.reset();
-                                objeto.selected();
-                                shapeModif = objeto;
-                                this.figuraSeleccionada = objeto;
-                                this.figura = this.figuraSeleccionada.figura;    
-                                document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
-                                break;
+                            if (objeto.figura === "rectángulo") {
+                                if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.x + objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y + objeto.h){
+                                    this.reset();
+                                    objeto.selected();
+                                    shapeModif = objeto;
+                                    this.figuraSeleccionada = objeto;
+                                    this.figura = this.figuraSeleccionada.figura;    
+                                    document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
+                                    break;
+                                }
+                            }else if (objeto.figura === "círculo") {
+                                if(sketch.mouseX >= (objeto.x - objeto.x / 2) && sketch.mouseX <= objeto.x + objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y + objeto.h){
+                                    this.reset();
+                                    objeto.selected();
+                                    shapeModif = objeto;
+                                    this.figuraSeleccionada = objeto;
+                                    this.figura = this.figuraSeleccionada.figura;    
+                                    document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
+                                    break;
+                                }
                             }
                         }
                 }
@@ -376,8 +388,10 @@
                             this.agregarFigura(this.primerClick.x, this.segundoClick.y);
                             if (this.tipoFigura==="línea") {
                                 this.figuras[this.figuras.length-1].actualizarMedidasLinea(this.primerClick.x,this.primerClick.y, this.segundoClick.x, this.segundoClick.y);
-                            }else if (this.tipoFigura === "rectángulo" || this.tipoFigura === "círculo") {
-                                this.figuras[this.figuras.length-1].actualizarMedidas(this.primerClick.x,this.primerClick.y, this.segundoClick.x, this.segundoClick.y);
+                            }else if (this.tipoFigura === "rectángulo") {
+                                this.figuras[this.figuras.length-1].actualizarMedidas(this.primerClick.x,this.primerClick.y, this.segundoClick.x - this.primerClick.x, this.segundoClick.y - this.primerClick.y);
+                            }else if (this.tipoFigura === "círculo") {
+                                this.figuras[this.figuras.length-1].actualizarMedidas(this.primerClick.x,this.primerClick.y, this.segundoClick.x - this.primerClick.x, this.segundoClick.y - this.primerClick.y);
                             }
                             
                             this.primerClick = [];
