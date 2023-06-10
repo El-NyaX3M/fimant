@@ -109,8 +109,8 @@ class Figura {
                 case "círculo":
                     stroke.ellipseMode(stroke.CORNERS);
                     stroke.ellipse(
-                        this.x,
-                        this.y,
+                        this.x - 30,
+                        this.y - 30 ,
                         this.w + 30,
                         this.h + 30
                     );
