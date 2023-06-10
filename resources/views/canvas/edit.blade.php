@@ -356,6 +356,177 @@
                     }
                 };
 
+                sketch.distanciaPuntoSegmento = (px, py, x1, y1, x2, y2) =>{
+                    let A = px - x1;
+                    let B = py - y1;
+                    let C = x2 - x1;
+                    let D = y2 - y1;
+
+                    let dot = A * C + B * D;
+                    let lenSq = C * C + D * D;
+                    let param = -1;
+                    if (lenSq !== 0) param = dot / lenSq;
+
+                    let xx, yy;
+
+                    if (param < 0) {
+                        xx = x1;
+                        yy = y1;
+                    } else if (param > 1) {
+                        xx = x2;
+                        yy = y2;
+                    } else {
+                        xx = x1 + param * C;
+                        yy = y1 + param * D;
+                    }
+
+                    let dx = px - xx;
+                    let dy = py - yy;
+                    return Math.sqrt(dx * dx + dy * dy);
+                }
+
+                /* CODIGO PARA SELECCIONAR LA FIGURA EN EL CANVAS */
+                sketch.selectFigura = () => {
+                        for(let objeto of this.figuras){
+                            if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.x + objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.y + objeto.h){
+                                this.figuraSeleccionada = null;
+                                objeto.diselect();
+                                document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.remove('capa-activa');
+                            }
+                            else{
+                                this.figuraSeleccionada = null;
+                                objeto.diselect();
+                                document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.remove('capa-activa');
+                            }
+                        }
+                        for(let objeto of this.figuras){
+                            /* DETECTAR SELECCION EN CANVAS */
+                            if (objeto.figura === "rectángulo") {
+                                if (objeto.w > 0 && objeto.h > 0) {
+                                    if (
+                                        sketch.mouseX >= objeto.x &&
+                                        sketch.mouseX <= objeto.x + objeto.w &&
+                                        sketch.mouseY >= objeto.y &&
+                                        sketch.mouseY <= objeto.y + objeto.h
+                                    ) {
+                                        this.reset();
+                                        objeto.selected();
+                                        this.figuraSeleccionada = objeto;
+                                        document
+                                            .getElementById("capa" + this.figuras.indexOf(objeto))
+                                            .classList.add("capa-activa");
+                                    }
+                                } else if (objeto.w < 0 && objeto.h < 0) {
+                                    if (
+                                        sketch.mouseX >= objeto.x + objeto.w &&
+                                        sketch.mouseX <= objeto.x &&
+                                        sketch.mouseY >= objeto.y + objeto.h &&
+                                        sketch.mouseY <= objeto.y
+                                    ) {
+                                        this.reset();
+                                        objeto.selected();
+                                        this.figuraSeleccionada = objeto;
+                                        document
+                                            .getElementById("capa" + this.figuras.indexOf(objeto))
+                                            .classList.add("capa-activa");
+                                    }
+                                } else if (objeto.w < 0 && objeto.h > 0) {
+                                    if (
+                                        sketch.mouseX >= objeto.x + objeto.w &&
+                                        sketch.mouseX <= objeto.x &&
+                                        sketch.mouseY >= objeto.y &&
+                                        sketch.mouseY <= objeto.y + objeto.h
+                                    ) {
+                                        this.reset();
+                                        objeto.selected();
+                                        this.figuraSeleccionada = objeto;
+                                        document
+                                            .getElementById("capa" + this.figuras.indexOf(objeto))
+                                            .classList.add("capa-activa");
+                                    }
+                                } else if (objeto.w > 0 && objeto.h < 0) {
+                                    if (
+                                        sketch.mouseX >= objeto.x &&
+                                        sketch.mouseX <= objeto.x + objeto.w &&
+                                        sketch.mouseY >= objeto.y + objeto.h &&
+                                        sketch.mouseY <= objeto.y
+                                    ) {
+                                        this.reset();
+                                        objeto.selected();
+                                        this.figuraSeleccionada = objeto;
+                                        document
+                                            .getElementById("capa" + this.figuras.indexOf(objeto))
+                                            .classList.add("capa-activa");
+                                    }
+                                }
+                            }
+                            /* CIRCULO */
+                            else if (objeto.figura === "círculo") {
+                                if (objeto.x>objeto.w && objeto.y>objeto.h) {
+                                    if(sketch.mouseX >= objeto.w && sketch.mouseX <= objeto.x && sketch.mouseY >= objeto.h && sketch.mouseY <= objeto.y){
+                                        this.reset();
+                                        objeto.selected();
+                                        this.figuraSeleccionada = objeto;  
+                                        document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
+                                        break;
+                                    }
+                                }else if (objeto.x<objeto.w && objeto.y<objeto.h) {
+                                    if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.w && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.h){
+                                        this.reset();
+                                        objeto.selected();
+                                        this.figuraSeleccionada = objeto;  
+                                        document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
+                                        break;
+                                    }
+                                }else if (objeto.x>objeto.w && objeto.y<objeto.h) {
+                                    if(sketch.mouseX >= objeto.w && sketch.mouseX <= objeto.x && sketch.mouseY >= objeto.y && sketch.mouseY <= objeto.h){
+                                        this.reset();
+                                        objeto.selected();
+                                        this.figuraSeleccionada = objeto;  
+                                        document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
+                                        break;
+                                    }
+                                }
+                                else if (objeto.x<objeto.w && objeto.y>objeto.h) {
+                                    if(sketch.mouseX >= objeto.x && sketch.mouseX <= objeto.w && sketch.mouseY >= objeto.h && sketch.mouseY <= objeto.y){
+                                        this.reset();
+                                        objeto.selected();
+                                        this.figuraSeleccionada = objeto;  
+                                        document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
+                                        break;
+                                    }
+                                }
+                            }
+                            /* LINEA */
+                            else if (objeto.figura === "línea") {
+                                let distancia = sketch.distanciaPuntoSegmento(sketch.mouseX, sketch.mouseY, objeto.x, objeto.y, objeto.x1, objeto.y1);
+                                let umbral = 5; // Umbral de tolerancia para el clic
+
+                                if (distancia <= umbral) {
+                                    this.reset();
+                                    objeto.selected();
+                                    this.figuraSeleccionada = objeto;  
+                                    document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
+                                    break;
+                                }
+                                
+                            }
+                            /* TEXTO */
+                            else if (objeto.figura === "texto") {
+                                let distancia = sketch.dist(sketch.mouseX, sketch.mouseY, objeto.x, objeto.y);
+                                let umbral = sketch.textWidth(objeto.palabra);  // Umbral de tolerancia para el clic
+
+                                if (distancia <= umbral) {
+                                    this.reset();
+                                    objeto.selected();
+                                    this.figuraSeleccionada = objeto;  
+                                    document.getElementById('capa'+this.figuras.indexOf(objeto)).classList.add('capa-activa');
+                                    break;
+                                }
+                            }
+                        }
+                } 
+
                 sketch.mousePressed = () => {
                     if (this.tipoFigura==='mover'  && sketch.mouseX>0 && sketch.mouseX<sketch.width && sketch.mouseY>0 && sketch.mouseY<sketch.height) {
                         for(let objeto of this.figuras){
