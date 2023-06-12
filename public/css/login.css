@@ -204,6 +204,12 @@
   position: absolute;
   right: 1%;
 }
+
+#tutocss{
+  position: absolute;
+  right: 16.5%;
+}
+
 #titulo{
   color: white;
   font-size: 25px;

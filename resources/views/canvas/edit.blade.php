@@ -20,7 +20,8 @@
             <button class="btn btn-outline-light btn-lg"><i class="fa-solid fa-slash fa-lg"></i></button>
             <button class="btn btn-outline-light btn-lg"><i class="fa-solid fa-font fa-lg"></i></button> --}}
             <a id="titulo">{{$project->name}}</a> <!--Devolver nombre de proyecto-->
-            <a href="{{url('/projects')}}" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="regresar" id="backcss"><i class="fa-sharp fa-solid fa-arrow-left"></i></a>
+            <button type="button" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="tutorial" id="tutocss" data-bs-toggle="modal" data-bs-target="#modalTuto" data-bs-target="#modalTuto"><i class="fa-solid">Tutorial</i></button> 
+            <a href="{{url('/projects')}}" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="regresar" id="backcss"><i class="fa-solid fa-house"></i></a>
             <button type="button" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="guardar" id="savecss" @click="guardar()"><i class="fa-solid fa-floppy-disk"> Guardar</i></button> 
             {{-- FORM PARA GUARDAR EL PROYECTO --}}
             <form action="{{route('projects.save',$project->id)}}" method="post" id="formGuardar">
@@ -72,6 +73,7 @@
                     </div>
 
                     <div class="row mt-3">
+                        <label class="text-white">Posicion</label><br>
                         <div class="col-6">
                             <label for="xFigura" class="text-white">X</label>
                             <div class="canvas-options rounded">
@@ -87,6 +89,7 @@
                     </div>
                     
                     <div class="row mt-3" v-if="figuraSeleccionada.figura!='texto' && figuraSeleccionada.figura!='línea'">
+                        <label class="text-white">Tamaño</label><br>
                         <div class="col-6" >
                             <label for="wFigura" class="text-white">W</label>
                             <div class="canvas-options rounded">
@@ -189,13 +192,73 @@
                             </div>
                         </div>
                     </div>
+
+ 
             
                 </div>
         </div>
-        
     </div>
 
-    
+    <!-- Modal 1 -->
+    <div class="modal fade" id="modalTuto" tabindex="-1" aria-labelledby="modalTutoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalTutoLabel">Tutorial: 1/2</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!--Cuerpo del Modal-->
+              <h5>Colocar Seleccion:</h5>
+              <h6>1.- Seleccionar figura, texto o linea a colocar.</h6>
+              <h6>2.- posicionar la seleccion en el punto A en el que se colocara y dar un click.</h6>
+              <h6>3.- posicionar la seleccion en el punto B en el que se colocara y dar un click.</h6>
+              <br>
+              <h5>Editar Seleccion:</h5>
+              <h6>1.- Seleccionar figura, texto o linea a editar en el panel izquierdo.</h6>
+              <h6>2.- Seleccionar opciones dentro del panel izquierdo (Volver invisible, Eliminar o colocar arriba/abajo dependiendo de la posicion inicial).</h6>
+              <h6>3.- Seleccionar opciones dentro del panel derecho (Cambiar posicion, Cambiar tamaño, Cambiar opacidad de relleno, Cambiar opacidad de trazado, Cambiar color de la figura o Cambiar color del trazado de la figura).</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="tutorial" id="tutocss2" data-bs-toggle="modal" data-bs-target="#modalTuto2" data-bs-dismiss="modal"><i class="fa-solid fa-arrow-right fa-bounce"></i></button>
+              </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Modal 2 -->
+        <div class="modal fade" id="modalTuto2" tabindex="-1" aria-labelledby="modalTutoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="modalTutoLabel">Tutorial: 2/2</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!--Cuerpo del Modal-->
+                  <h5>Seleccionar:</h5>
+                  <h6>1.- Debe elegir la opcion con el icono de la flecha de mouse. </h6>
+                  <i class="fa-solid fa-arrow-pointer fa-lg"></i>
+                  <h6>2.- A continuacion debera seleccionar la figura la cual desea modificar.</h6>
+                  <h6>3.- Posteriormente tendra la opcion de editarla desde el panel derecho e izquierdo o redimensionar y reposicionar desde la opcion reposicionar con su respectivo icono. </h6>
+                  <i class="fa-solid fa-arrows-up-down-left-right fa-lg"></i>
+                  <br><br>
+                  <h5>Redimensionar y Reposicionar:</h5>
+                  <h6>1.- Primero debe elegir la opcion con el icono de la flecha de mouse para seleccionar la figura, texto o linea que desea redimensionar o reposicionar. </h6>
+                  <i class="fa-solid fa-arrow-pointer fa-lg"></i>
+                  <h6>2.- Posteriormente tendra la opcion de editarla desde el panel derecho e izquierdo o redimensionar y reposicionar desde la opcion reposicionar con su respectivo icono. </h6>
+                  <i class="fa-solid fa-arrows-up-down-left-right fa-lg"></i>
+                  <h6>3.- Posteriormente tendra que selecionar dando un click la nueva posicion A de su figura y con un ultimo click mas la posicion B, tomando en cuenta posicion y tamaño de su figura. </h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light btn-lg notActive" data-toggle="fun" data-title="tutorial" id="tutocss2" data-bs-toggle="modal" data-bs-target="#modalTuto" data-bs-dismiss="modal"><i class="fa-solid fa-arrow-left fa-bounce"></i></button>
+                  </div>
+              </div>
+            </div>
+            </div>
+
+
+      </div>
 </div>
     
 </div>
